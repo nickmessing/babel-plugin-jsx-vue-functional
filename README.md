@@ -24,16 +24,27 @@ example .babelrc:
 
 Example:
 ```js
-export const a = ({ props, listeners }) => <div onClick={listeners.click}>{props.msg}</div>
+const A = () => <h1>Hello World</h1>
+export const B = ({ props, listeners }) => <div onClick={listeners.click}>{props.msg}<A /></div>
 ```
 will be transpiled into:
 ```js
-export const a = {
+const A = {
   functional: true,
-  render: (h, { props, listeners }) => <div onClick={listeners.click}>{props.msg}</div>
-};
+  render: (h) => <h1>Hello World</h1>
+}
+
+export const B = {
+  functional: true,
+  render: (h, { props, listeners }) => <div onClick={listeners.click}>{props.msg}<A /></div>
+}
 ```
 
 #### Warning
 
-This plugin will transform **all** named exported arrow functions that contain JSX.
+This plugin will transform **all** named arrow functions that contain JSX and
+starting with version 2.0.0 so this code will not work:
+```js
+const A = () => <h1>Hello World</h1>
+export const B = ({ props, listeners }) => <div onClick={listeners.click}>{props.msg}{A()}</div>
+```

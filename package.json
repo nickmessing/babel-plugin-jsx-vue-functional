@@ -17,6 +17,6 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "ava"
+    "test": "yarn lint && yarn ava"
   }
 }

@@ -26,6 +26,25 @@ module.exports = babel => {
             const name = path.node.declarations[0].id.name
             const params = [t.identifier('h'), ...path.node.declarations[0].init.params]
             const body = path.node.declarations[0].init.body
+            const isDevEnv = process.env.NODE_ENV === 'development'
+            const props = [
+              t.objectProperty(
+                t.identifier('functional'),
+                t.booleanLiteral(true)
+              ),
+              t.objectProperty(
+                t.identifier('render'),
+                t.arrowFunctionExpression(params, body)
+              )
+            ]
+            if (isDevEnv) {
+              props.unshift(
+                t.objectProperty(
+                  t.identifier('name'),
+                  t.stringLiteral(name)
+                )
+              )
+            }
             path.replaceWith(
               t.variableDeclaration(
                 'const',
@@ -33,16 +52,7 @@ module.exports = babel => {
                   t.variableDeclarator(
                     t.identifier(name),
                     t.objectExpression(
-                      [
-                        t.objectProperty(
-                          t.identifier('functional'),
-                          t.booleanLiteral(true)
-                        ),
-                        t.objectProperty(
-                          t.identifier('render'),
-                          t.arrowFunctionExpression(params, body)
-                        )
-                      ]
+                      props
                     )
                   )
                 ]

@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-jsx-vue-functional",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "JSX Syntactic Sugar Plugin for Vue Functional Components",
   "main": "index.js",
   "repository": "https://github.com/nickmessing/babel-plugin-jsx-vue-functional.git",

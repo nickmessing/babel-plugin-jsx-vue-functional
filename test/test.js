@@ -16,3 +16,13 @@ test('Generic functional export', t => {
 };`
   )
 })
+
+test('Generic functional component', t => {
+  t.is(
+    transpile(`const a = ({ props, listeners }) => <div onClick={listeners.click}>{props.msg}</div>`),
+    `const a = {
+  functional: true,
+  render: (h, { props, listeners }) => <div onClick={listeners.click}>{props.msg}</div>
+};`
+  )
+})

@@ -24,7 +24,7 @@ module.exports = babel => {
               return
             }
             const name = path.node.declarations[0].id.name
-            const params = [t.identifier('h'), ...path.node.declarations[0].init.params]
+            const params = [t.identifier('h')].concat(path.node.declarations[0].init.params)
             const body = path.node.declarations[0].init.body
             const isDevEnv = process.env.NODE_ENV === 'development'
             const props = [

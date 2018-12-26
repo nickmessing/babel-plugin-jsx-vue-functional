@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/nickmessing/babel-plugin-jsx-vue-functional.svg?branch=master)](https://travis-ci.org/nickmessing/babel-plugin-jsx-vue-functional)
 
+## DEPRECATED: Check https://github.com/vuejs/jsx instead
+
 ## JSX Functional Components for Vue JSX
 
 This babel plugin adds some syntactic sugar to JSX.
